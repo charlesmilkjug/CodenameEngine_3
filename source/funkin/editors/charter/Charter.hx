@@ -1696,11 +1696,7 @@ class Charter extends UIState {
 			var gridBackdropIndex = members.indexOf(gridBackdrops);
 
 			remove(gridBackdrops);
-
-			@:privateAccess
-			gridBackdrops.__gridGraphic.destroy();
-			
-			//gridBackdrops.destroy(); //this deletes notes?
+			gridBackdrops.destroy();
 
 			gridBackdrops = new CharterBackdropGroup(strumLines);
 			gridBackdrops.notesGroup = notesGroup;
@@ -1708,9 +1704,8 @@ class Charter extends UIState {
 
 			@:privateAccess
 			gridBackdropDummy.parent = gridBackdrops;
-			gridBackdrops.cameras = [charterCamera];
+			gridBackdrops.cameras = [Charter.instance.charterCamera];
 			gridBackdrops.createGrids(PlayState.SONG.strumLines.length);
-			gridBackdrops.conductorSprY = curStepFloat * 40;
 			refreshBPMSensitive();
 		}
 	}
