@@ -26,7 +26,7 @@ class MiscOptions extends OptionsScreen {
 			"Reset Save Data",
 			"Select this option to reset save data. This will remove all of your highscores.",
 			function() {
-				updateDescText("SAVE DATA RESETTING COMING SOON!!!");
+				Logs.trace('RESET SAVE DATA COMING SOON!!!', ERROR);
 		}));
 	}
 }
