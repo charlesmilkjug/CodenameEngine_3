@@ -1,3 +1,3 @@
 @echo off
-lime test windows -release
+lime test windows -release -clean
 pause

@@ -1,5 +1,5 @@
 # Codename Engine features
-This markdown file contains every single feature Codename has, separated into multiple categories. List may be incomplete.
+This markdown file contains every single feature Codename has, separated into multiple categories. List may be incomplete, for now.
 
 _**QOL = Quality of Life**_
 
@@ -23,7 +23,6 @@ _**QOL = Quality of Life**_
     - (Windows) FNF is no longer blurry on 125-150% DPI
     - FNF auto fixes audio on state change when you plug in/out your headphones.
     - FNF auto applies dark titlebar
-- **Week 7 included** with softcoded cutscenes (no MP4)
 - Auto updating: Once the engine updates, a prompt will be available at launch. If you accept to update, the engine will auto install the newest version. All of the following update files will be downloaded from the GitHub releases:
     - `Update-Windows.exe` - Containing the latest Windows executable. (~60mb)
     - `Update-Assets.zip` - Every asset change from the latest version to the newest. If upgrading from even older version, all of the `Update-Assets.zip` files for the versions in between and the latest one will be downloaded.
@@ -78,5 +77,5 @@ _**QOL = Quality of Life**_
 		- Mature Chart editor (Character editor rework soon)
 		- Features not found in other editors!
     - Every single state & substate can be modified via HScript (`data/states/StateName.hx`)
-- **Instances launched via `lime test windows` will automatically use assets from source.**
+- **Instances launched via `lime test [TARGET]` will automatically use assets from source.**
 </details>
