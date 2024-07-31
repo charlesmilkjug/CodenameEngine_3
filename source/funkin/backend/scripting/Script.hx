@@ -153,8 +153,7 @@ class Script extends FlxBasic implements IFlxDestroyable {
 					var arr = Assets.getText(path).split("________PACKSEP________");
 					fromString(arr[1], arr[0]);
 				case "lua":
-					Logs.trace("Lua is not supported in this engine. Use HScript instead.", ERROR);
-					new DummyScript(path);
+					new LuaScript(path);
 				default:
 					new DummyScript(path);
 			}
@@ -325,4 +324,14 @@ class Script extends FlxBasic implements IFlxDestroyable {
 	public function onCreate(path:String) {}
 
 	public function onLoad() {}
+
+	private static var __scriptType:Class<Script>;
+    public static function onFinalize(s:Script) {
+        #if cpp
+        // destroy everything
+        Sys.println("GARBAGE COLLECTOR - FINALIZING");
+        s.destroy();
+        Sys.println("GARBAGE COLLECTOR - FINALIZING");
+        #end
+    }
 }

@@ -133,6 +133,9 @@
 	<!-- Comment this out to use the default OpenFL assets system for the assets/ folder. !-->
 	<haxedef name="USE_ADAPTED_ASSETS" unless="web" />
 
+	<!-- Comment this out to disable the use of luajit. !-->
+	<define name="ENABLE_LUA" if="windows || mac || linux"/>
+
 	<!-- Comment this out to disable support for custom ndlls. !-->
 	<haxedef name="NDLLS_SUPPORTED" unless="web || mobile || iphonesim" />
 
@@ -150,8 +153,10 @@
 	<!-- Comment this out to disable dark mode windows -->
 	<define name="DARK_MODE_WINDOW"/>
 
+    <haxedef name="ENABLE_LUA" if="ENABLE_LUA" />
 	<haxedef name="VIDEO_CUTSCENES" if="VIDEO_CUTSCENES" />
 	<haxedef name="UPDATE_CHECKING" if="UPDATE_CHECKING" />
+	<haxedef name="LUAJIT_ENABLE_LUA52COMPAT" if="ENABLE_LUA" />
 	<haxedef name="DISCORD_RPC" if="DISCORD_RPC" />
 	<haxedef name="SHOW_BUILD_ON_FPS" if="SHOW_BUILD_ON_FPS" />
 	<haxedef name="SOFTCODED_CLASSES" if="SOFTCODED_CLASSES" />
