@@ -4,10 +4,11 @@ import openfl.filters.ShaderFilter;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
 import funkin.backend.shaders.CustomShader;
+import openfl.filters.BlurFilter;
 
 class UIWarningSubstate extends MusicBeatSubstate {
-	var camShaders:Array<FlxCamera> = [];
-	var blurShader:CustomShader = new CustomShader(Options.intensiveBlur ? "engine/editorBlur" : "engine/editorBlurFast");
+	var camFilters:Array<FlxCamera> = [];
+	var blurFilter:BlurFilter = new BlurFilter(5, 5);
 
 	var title:String;
 	var message:String;
@@ -26,30 +27,25 @@ class UIWarningSubstate extends MusicBeatSubstate {
 	}
 
 	public override function create() {
-		for(c in FlxG.cameras.list) {
-			// Prevent adding a shader if it already has one
+		if (Options.blurBG) for(c in FlxG.cameras.list) {
+			// Prevents a shader being added if there's already an existing one
 			@:privateAccess if(c._filters != null) {
-				var shouldSkip = false;
-				for(filter in c._filters) {
-					if(filter is ShaderFilter) {
-						var filter:ShaderFilter = cast filter;
-						if(filter.shader is CustomShader) {
-							var shader:CustomShader = cast filter.shader;
-
-							if(shader.path == blurShader.path) {
-								shouldSkip = true;
-								break;
-							}
-						}
+                var shouldSkip = false;
+                for(filter in c._filters) {
+                    if(filter is BlurFilter) {
+                        var filter:BlurFilter = cast filter;
+                        shouldSkip = true;
+                        break;
 					}
-				}
-				if(shouldSkip)
-					continue;
-			}
-			camShaders.push(c);
-			c.addShader(blurShader);
-		}
+                }
+                if(shouldSkip)
+                    continue;
+            }
 
+			camFilters.push(c);
+			c.setFilters([blurFilter]);
+		}
+		
 		camera = warnCam = new FlxCamera();
 		warnCam.bgColor = 0;
 		warnCam.alpha = 0;
@@ -90,12 +86,22 @@ class UIWarningSubstate extends MusicBeatSubstate {
 		FlxTween.tween(camera, {zoom: 1}, 0.66, {ease: FlxEase.elasticOut});
 
 		CoolUtil.playMenuSFX(WARNING);
+
+		switch(Options.blurQuality){
+			case "highBlur":
+				blurFilter.quality = 3;
+			case "mediumBlur":
+				blurFilter.quality = 2;
+			case "lowBlur":
+				blurFilter.quality = 1;
+		}
 	}
 
 	public override function destroy() {
-		super.destroy();
-		for(e in camShaders)
-			e.removeShader(blurShader);
+		if (Options.blurBG) @:privateAccess {
+			for(e in camFilters)
+				if(e._filters != null) e._filters.remove(blurFilter);
+		}
 
 		FlxTween.cancelTweensOf(warnCam);
 		FlxG.cameras.remove(warnCam);

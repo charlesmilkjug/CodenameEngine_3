@@ -30,6 +30,7 @@ class Options
 	public static var week6PixelPerfect:Bool = true;
 	public static var gameplayShaders:Bool = true;
 	public static var colorHealthBar:Bool = true;
+	public static var greenScreenMode:Bool = false;
 	public static var lowMemoryMode:Bool = false;
 	public static var betaUpdates:Bool = false;
 	public static var splashesEnabled:Bool = true;
@@ -43,7 +44,9 @@ class Options
 	/**
 	 * EDITORS SETTINGS
 	 */
-	public static var intensiveBlur:Bool = true;
+	// public static var intensiveBlur:Bool = true;
+	public static var blurBG:Bool = true;
+	public static var blurQuality:String = "mediumBlur";
 	public static var editorSFX:Bool = true;
 	public static var editorPrettyPrint:Bool = false;
 	public static var maxUndos:Int = 120;

@@ -20,7 +20,7 @@ class GameplayOptions extends OptionsScreen {
 			"ghostTapping"));
 		add(offsetSetting = new NumOption(
 			"Song Offset",
-			"Changes the offset that songs should start with.",
+			"Changes the offset that songs should start with, useful when using Bluetooth devices.",
 			-999, // minimum
 			999, // maximum
 			1, // change
@@ -28,11 +28,11 @@ class GameplayOptions extends OptionsScreen {
 			__changeOffset)); // callback
 		add(new Checkbox(
 			"Naughtyness",
-			"If unchecked, will censor the Week 7 cutscenes.",
+			"If unchecked, will censor the Week 7 cutscenes. Not the SH*T rating though.",
 			"naughtyness"));
 		add(new Checkbox(
 			"Camera Zoom on Beat",
-			"If unchecked, will stop the camera from zooming in every 4 beats",
+			"If unchecked, will stop the camera from zooming in every 4 beats.",
 			"camZoomOnBeat"));
 	}
 

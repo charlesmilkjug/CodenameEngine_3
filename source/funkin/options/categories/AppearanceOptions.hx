@@ -2,7 +2,7 @@ package funkin.options.categories;
 
 class AppearanceOptions extends OptionsScreen {
 	public override function new() {
-		super("Appearance", "Change Appearance options such as Flashing menus...");
+		super("Appearance", "Change Appearance options such as Gameplay Shaders.");
 		add(new NumOption(
 			"Framerate",
 			"Pretty self explanatory, isn't it?",
@@ -13,24 +13,28 @@ class AppearanceOptions extends OptionsScreen {
 			__changeFPS)); // callback
 		add(new Checkbox(
 			"Antialiasing",
-			"If unchecked, will disable antialiasing on every sprite. Can boost performances at the cost of sharper, more pixely sprites.",
+			"If unchecked, will disable antialiasing on every sprite. Can boost performances at the cost of sharper, crisper sprites.",
 			"antialiasing"));
 		add(new Checkbox(
 			"Colored Healthbar",
-			"If unchecked, the game will use the orginal red/green health bar from the week 6 fnf game.",
+			"If unchecked, the health bar colors will be the red and green colors opposed to ones that are customized. Red for opponent and Green for the player.",
 			"colorHealthBar"));
 		add(new Checkbox(
 			"Pixel Perfect Effect",
-			"If checked, Week 6 will have a pixel perfect effect to it enabled, aligning every pixel on the screen.",
+			"If checked, Week 6 will have a pixel-perfect effect to it enabled, aligning every pixel on the screen.",
 			"week6PixelPerfect"));
 		add(new Checkbox(
 			"Gameplay Shaders",
-			"If unchecked, gameplay shaders (visual effects like Thorns's Chromatic Aberration) wont be loaded; this may be helpful on weak devices.",
+			"If unchecked, gameplay shaders (visual effects like Thorns's chromatic aberration) won't be loaded; this may be helpful on weak devices.",
 			"gameplayShaders"));
 		add(new Checkbox(
-			"Flashing Menu",
-			"If unchecked, will disable menu flashing when you select an option in the Main Menu, and other flashes will be slower.",
+			"Flashing Lights in Menus",
+			"If unchecked, will disable some flashing when you select an option in the Main Menu, and other flashes will be slower.",
 			"flashingMenu"));
+		add(new Checkbox(
+			"Note Splashes",
+			"If checked, will play a splashing animation on the strums, every time a note gets hit.",
+			"splashesEnabled"));
 		add(new Checkbox(
 			"Low Memory Mode",
 			"If checked, will disable certain background elements in stages to reduce memory usage.",
@@ -47,6 +51,10 @@ class AppearanceOptions extends OptionsScreen {
 			"Auto Pause",
 			"If checked, switching windows will pause the game.",
 			"autoPause"));
+		add(new Checkbox(
+			"Green Screen Mode",
+			"For those green screen vid- oh yeah, those already died out.",
+			"greenScreenMode"));
 		add(new Checkbox(
 			"Use inactive volume",
 			"If checked, the games volume will turn down when the window is inactive.",

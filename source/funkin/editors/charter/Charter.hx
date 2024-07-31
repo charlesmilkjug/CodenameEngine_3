@@ -384,9 +384,9 @@ class Charter extends UIState {
 						onSelect: _playback_metronome,
 						icon: Options.charterMetronomeEnabled ? 1 : 0
 					},
-					{
+					/*{
 						label: "Visual metronome"
-					},
+					},*/
 				]
 			}
 		];

@@ -137,11 +137,6 @@ class TitleState extends MusicBeatState
 		{
 			if (gamepad.justPressed.START)
 				pressedEnter = true;
-
-			#if switch
-			if (gamepad.justPressed.B)
-				pressedEnter = true;
-			#end
 		}
 
 		if (pressedEnter && transitioning && skippedIntro) {

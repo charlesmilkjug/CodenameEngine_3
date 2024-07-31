@@ -12,8 +12,6 @@
 	-->
 	<app save-path="YoshiCrafter29/CodenameEngine" save-name="save-default" mod-saves="true" />
 
-	<!--Switch Export with Unique ApplicationID and Icon-->
-	<set name="APP_ID" value="0x0100f6c013bbc000" />
 
 	<!-- DO NOT REMOVE!! ALLOWS ME TO DO REGIONS LIKE IN C# AND KEEP CODE ORGANIZED. REMOVING IT WOULD BREAK THE ENGINE -->
 	<haxedef name="REGION" />
@@ -24,6 +22,8 @@
 
 	<!--Minimum without FLX_NO_GAMEPAD: 11.8, without FLX_NO_NATIVE_CURSOR: 11.2-->
 	<set name="SWF_VERSION" value="11.8" />
+
+	<error value="Nintendo Switch is not supported. Seriously, why would you do that?" if="switch" />
 
 	<!-- ____________________________ Window Settings ___________________________ -->
 
@@ -38,10 +38,7 @@
 	<window if="mac" allow-high-dpi="true" />
 
 	<!--Mobile-specific-->
-	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" resizable="false"/>
-
-	<!--Switch-specific-->
-	<window if="switch" orientation="landscape" fullscreen="true" width="0" height="0" resizable="true" />
+	<window if="mobile" orientation="landscape" fullscreen="true" width="1280" height="720" resizable="false"/>
 
 	<!-- _____________________________ Path Settings ____________________________ -->
 
@@ -69,9 +66,13 @@
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
+	<haxedef name="FLX_RECORD" if="debug"/>
+
 	<haxeflag name="--macro" value="funkin.backend.system.macros.NewHaxeWarning.warn()" />
 
 	<haxedef name="FLX_NO_FOCUS_LOST_SCREEN" />
+
+    <haxedef name="HXCPP_GC_BIG_BLOCKS" if="cpp debug" />
 
 	<!--Disable the Flixel core debugger. Automatically gets set whenever you compile in release mode!-->
 	<haxedef name="FLX_NO_DEBUG" unless="debug" />
@@ -92,7 +93,6 @@
 	<icon path="art/iconOG.png" size='512' />
 	<icon path="art/iconOG.png" size='768' />
 	<icon path="art/iconOG.png" size='1024' />
-
 
 	<!-- _________________________________ Engine Settings _______________________________ -->
 
@@ -116,7 +116,7 @@
 	<define name="CUSTOM_CLASSES" />
 
 	<!-- Comment this out to disable multithreading !-->
-	<haxedef name="ALLOW_MULTITHREADING" unless="web || flash" />
+	<haxedef name="ALLOW_MULTITHREADING" unless="web || mobile || flash" />
 
 	<!-- Comment this out to disable titlescreen.xml !-->
 	<haxedef name="TITLESCREEN_XML" />
@@ -134,7 +134,7 @@
 	<haxedef name="USE_ADAPTED_ASSETS" unless="web" />
 
 	<!-- Comment this out to disable support for custom ndlls. !-->
-	<haxedef name="NDLLS_SUPPORTED" unless="web || iphonesim" />
+	<haxedef name="NDLLS_SUPPORTED" unless="web || mobile || iphonesim" />
 
 	<!-- Comment this out to disable support for Away3D Flixel Intergration (reduces compile times)-->
 	<define name="THREE_D_SUPPORT" />
@@ -145,7 +145,7 @@
 	</section>
 
 	<!-- Comment this out to disable commit number on FPS -->
-	<define name="SHOW_BUILD_ON_FPS" />
+	<!--<define name="SHOW_BUILD_ON_FPS" />-->
 
 	<!-- Comment this out to disable dark mode windows -->
 	<define name="DARK_MODE_WINDOW"/>
@@ -178,6 +178,7 @@
 
 	<haxelib name="hscript-improved" />
 	<haxelib name="hxdiscord_rpc" if="DISCORD_RPC"/>
+	<haxelib name="extension-androidtools" if="android" />
 	<haxelib name="markdown" />
 
 	<!-- _________________________________ Additional stuff _______________________________ -->
@@ -189,12 +190,16 @@
 
 	<haxeflag name="--macro" value="funkin.backend.system.macros.Macros.initMacros()" />
 
+    <haxedef name="NO_PRECOMPILED_HEADERS" if="linux" />
+
 	<!-- Fix compiling issues -->
 	<setenv name="HAXEPATH" value="./"/>
 
-	<haxedef name="HXCPP_CHECK_POINTER" if="release" />
-	<haxedef name="HXCPP_STACK_LINE" if="release" />
-	<haxedef name="HXCPP_DEBUG_LINK" if="release" />
+	<haxedef name="HXCPP_CHECK_POINTER" unless="debug" />
+	<haxedef name="HXCPP_STACK_LINE" unless="debug" />
+	<haxedef name="HXCPP_STACK_TRACE" unless="debug" />
+	<haxedef name="HXCPP_DEBUG_LINK" unless="debug" />
 
+    <haxedef name="openflPos" />
 	<haxedef name="hscriptPos" /> <!-- for logging -->
 </project>

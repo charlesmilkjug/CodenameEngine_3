@@ -106,12 +106,12 @@ class Script extends FlxBasic implements IFlxDestroyable {
 		return defines;
 	}
 	/**
-	 * All available script extensions
+	 * All available script extensions.
 	 */
 	public static var scriptExtensions:Array<String> = [
 		"hx", "hscript", "hsc", "hxs",
 		"pack", // combined file
-		"lua" /** ACTUALLY NOT SUPPORTED, ONLY FOR THE MESSAGE **/
+		"lua" /** will do later **/
 	];
 
 	/**
@@ -120,12 +120,12 @@ class Script extends FlxBasic implements IFlxDestroyable {
 	public static var curScript:Script = null;
 
 	/**
-	 * Script name (with extension)
+	 * Script name. (with extension)
 	 */
 	public var fileName:String;
 
 	/**
-	 * Script Extension
+	 * Script extension.
 	 */
 	public var extension:String;
 

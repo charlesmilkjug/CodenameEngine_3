@@ -21,12 +21,12 @@ class OptionsMenu extends TreeMenu {
 		},
 		{
 			name: 'Appearance >',
-			desc: 'Change Appearance options such as Flashing menus...',
+			desc: 'Change Appearance options such as Gameplay Shaders.',
 			state: AppearanceOptions
 		},
 		{
 			name: 'Miscellaneous >',
-			desc: 'Use this menu to reset save data or engine settings.',
+			desc: 'Options that do not fit above. Use this menu to reset save data or engine settings.',
 			state: MiscOptions
 		}
 	];

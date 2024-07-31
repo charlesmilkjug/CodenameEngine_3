@@ -542,6 +542,9 @@ class PlayState extends MusicBeatState
 		FlxG.cameras.add(camHUD = new HudCamera(), false);
 		camHUD.bgColor.alpha = 0;
 
+		if (Options.greenScreenMode) camHUD.bgColor =0xFF00FF00;
+		else camHUD.bgColor.alpha = 0;
+
 		downscroll = Options.downscroll;
 
 		persistentUpdate = true;

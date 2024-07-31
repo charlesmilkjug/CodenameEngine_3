@@ -1,5 +1,11 @@
 package funkin.backend.system;
 
+#if android
+import android.content.Context;
+#elseif ios
+import lime.system.System;
+#end
+
 import funkin.editors.SaveWarning;
 import funkin.backend.assets.AssetsLibraryList;
 import funkin.backend.system.framerate.SystemInfo;
@@ -17,6 +23,13 @@ import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
 import funkin.backend.system.modules.*;
 
+#if linux
+@:cppInclude('./external/gamemode_client.h')
+@:cppFileCode('
+	#define GAMEMODE_AUTO
+')
+#end
+
 #if ALLOW_MULTITHREADING
 import sys.thread.Thread;
 #end
@@ -30,6 +43,7 @@ class Main extends Sprite
 	// make this empty once you guys are done with the project.
 	// good luck /gen <3 @crowplexus
 	public static final releaseCycle:String = "Beta";
+	public static final releaseCycleYouTube:String = "DEMO";
 
 	public static var instance:Main;
 
@@ -62,6 +76,12 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
+
+		#if android
+		Sys.setCwd(Context.getExternalFilesDir() + '/');
+		#elseif ios
+		Sys.setCwd(System.applicationStorageDirectory);
+		#end
 
 		instance = this;
 

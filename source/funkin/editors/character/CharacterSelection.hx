@@ -30,7 +30,7 @@ class CharacterSelection extends EditorTreeMenu
 			openSubState(new CharacterCreationSubstate());
 		}));
 
-		main = new OptionsScreen("Character Editor", "Select a character to edit", list);
+		main = new OptionsScreen("Character Editor", "Select a character to edit.", list);
 
 		DiscordUtil.call("onEditorTreeLoaded", ["Character Editor"]);
 	}
