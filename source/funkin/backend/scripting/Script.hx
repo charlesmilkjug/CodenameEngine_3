@@ -176,13 +176,12 @@ class Script extends FlxBasic implements IFlxDestroyable {
 			case "hx" | "hscript" | "hsc" | "hxs":
 				new HScript(path).loadFromString(code);
 			case "lua":
-				case "lua":
-					#if ENABLE_LUA
-					new LuaScript(path).loadFromString(code);
-					#else
-					Logs.trace("Lua is not supported in this engine. Use HScript instead.", ERROR);
-					new DummyScript(path).loadFromString(code);
-					#end
+				#if ENABLE_LUA
+				new LuaScript(path).loadFromString(code);
+				#else
+				Logs.trace("Lua is not supported in this engine. Use HScript instead.", ERROR);
+				new DummyScript(path).loadFromString(code);
+				#end
 			default:
 				new DummyScript(path).loadFromString(code);
 		}
