@@ -23,13 +23,6 @@ import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
 import funkin.backend.system.modules.*;
 
-#if linux
-@:cppInclude('./external/gamemode_client.h')
-@:cppFileCode('
-	#define GAMEMODE_AUTO
-')
-#end
-
 #if ALLOW_MULTITHREADING
 import sys.thread.Thread;
 #end
@@ -37,6 +30,13 @@ import sys.thread.Thread;
 import sys.io.File;
 #end
 import funkin.backend.assets.ModsFolder;
+
+#if linux
+@:cppInclude('./external/gamemode_client.h')
+@:cppFileCode('
+	#define GAMEMODE_AUTO
+')
+#end
 
 class Main extends Sprite
 {
