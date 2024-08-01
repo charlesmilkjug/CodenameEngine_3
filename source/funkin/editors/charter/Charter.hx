@@ -300,22 +300,6 @@ class Charter extends UIState {
 					},
 					null,
 					{
-						label: "Scroll left",
-						keybind: [SHIFT, LEFT],
-						onSelect: _view_scrollleft
-					},
-					{
-						label: "Scroll right",
-						keybind: [SHIFT, RIGHT],
-						onSelect: _view_scrollright
-					},
-					{
-						label: "Reset scroll",
-						keybind: [SHIFT, DOWN],
-						onSelect: _view_scrollreset
-					},
-					null,
-					{
 						label: "Decrease grid width",
 						keybind: [CONTROL, LBRACKET],
 						onSelect: _view_decrease_keycount
@@ -1186,7 +1170,7 @@ class Charter extends UIState {
 			gridBackdrops.conductorSprY = lerp(gridBackdrops.conductorSprY, curStepFloat * 40, __firstFrame ? 1 : 1/3);
 		}
 		charterCamera.scroll.set(
-			lerp(charterCamera.scroll.x, ((( (40*Charter.keyCount) * gridBackdrops.strumlinesAmount) - FlxG.width) / 2) + sideScroll, __firstFrame ? 1 : 1/3),
+			((((40*Charter.keyCount) * gridBackdrops.strumlinesAmount) - FlxG.width) / 2),
 			gridBackdrops.conductorSprY - (FlxG.height * 0.5)
 		);
 
@@ -1242,10 +1226,6 @@ class Charter extends UIState {
 					if (FlxG.mouse.wheel != 0) {
 						zoom += 0.25 * FlxG.mouse.wheel;
 						__camZoom = Math.pow(2, zoom);
-					}
-				} else if (FlxG.keys.pressed.SHIFT) {
-					if (FlxG.mouse.wheel != 0) {
-						sideScroll -= 40 * FlxG.mouse.wheel;
 					}
 				} else {
 					if (!FlxG.sound.music.playing) {
@@ -1310,11 +1290,6 @@ class Charter extends UIState {
 	}
 	function set___camZoom(val:Float) {
 		return __camZoom = FlxMath.bound(val, 0.1, 3);
-	}
-
-	var sideScroll(default, set):Float = 0;
-	function set_sideScroll(val:Float) {
-		return sideScroll = FlxMath.bound(val, -((40*Charter.keyCount) * gridBackdrops.strumlinesAmount) / 2, ((40*Charter.keyCount) * gridBackdrops.strumlinesAmount) / 2);
 	}
 
 	// TOP MENU OPTIONS
@@ -1652,16 +1627,6 @@ class Charter extends UIState {
 		for (shader in waveformHandler.waveShaders) shader.data.lowDetail.value = [Options.charterLowDetailWaveforms];
 	}
 
-	function _view_scrollleft(_) {
-		sideScroll -= 40;
-	}
-	function _view_scrollright(_) {
-		sideScroll += 40;
-	}
-	function _view_scrollreset(_) {
-		sideScroll = 0;
-	}
-
 	inline function _view_increase_keycount(_)
 		changeKeyCount(keyCount+1);
 	inline function _view_decrease_keycount(_)
@@ -1749,7 +1714,6 @@ class Charter extends UIState {
 			gridBackdrops.createGrids(PlayState.SONG.strumLines.length);
 			gridBackdrops.conductorSprY = curStepFloat * 40;
 			refreshBPMSensitive();
-			this.sideScroll = sideScroll; //make sure it updates
 		}
 	}
 
