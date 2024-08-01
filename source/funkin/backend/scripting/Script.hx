@@ -111,7 +111,7 @@ class Script extends FlxBasic implements IFlxDestroyable {
 	public static var scriptExtensions:Array<String> = [
 		"hx", "hscript", "hsc", "hxs",
 		"pack", // combined file
-		"lua" /** will do later **/
+		"lua" /** no. **/
 	];
 
 	/**
